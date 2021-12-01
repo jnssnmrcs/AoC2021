@@ -2027,10 +2027,10 @@ func day1() {
             continue
         }
         
-        let firstSum = first + second + third
-        let secondSum = second + third + fourth
+        let previousWindowSum = first + second + third
+        let currentWindowSum = second + third + fourth
         
-        if (secondSum > firstSum) {
+        if (currentWindowSum > previousWindowSum) {
             increases += 1
         }
     }
