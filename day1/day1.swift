@@ -37,7 +37,7 @@ func day1part2(_ input: String) {
 }
 
 func day1() {
-    let input = getInput("day1")
+    let input = getInput("day1", "input.txt")
     
     day1part1(input)
     day1part2(input)
