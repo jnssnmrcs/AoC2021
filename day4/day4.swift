@@ -24,7 +24,7 @@ func findWinningBoard(_ numbers: [String], _ boards: inout [BingoBoard], _ order
                     if (boards[index][column, row].value == number) {
                         boards[index][column, row].marked = true
 
-                        if (hasBingoRow(boards[index])) {
+                        if (hasBingo(boards[index])) {
                             // We either found the first winning bingo board or the last, either way return it
                             if (order == .first || boards.count == 1) {
                                 return (boards[index], winningNumber)
@@ -44,7 +44,7 @@ func findWinningBoard(_ numbers: [String], _ boards: inout [BingoBoard], _ order
     return nil
 }
 
-func hasBingoRow(_ board: BingoBoard) -> Bool {
+func hasBingo(_ board: BingoBoard) -> Bool {
     // Find bingo column
     columnLoop: for column in 0..<board.columns {
         rowLoop: for row in 0..<board.rows {
