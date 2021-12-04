@@ -2,7 +2,6 @@ import Foundation
 
 typealias BingoValue = (value: String, marked: Bool)
 typealias BingoBoard = Grid<BingoValue>
-typealias BingoBoardTuple = (board: BingoBoard, bingo: Bool)
 
 enum Order {
     case first
