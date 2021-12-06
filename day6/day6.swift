@@ -25,7 +25,6 @@ func day6part2(_ input: String) {
     
     for _ in 0..<256 {
         let reproducingFishes = fishes[0]
-        fishes[0] = 0
         
         for i in 1..<9 {
             fishes[i - 1] = fishes[i]
