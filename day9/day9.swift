@@ -22,11 +22,13 @@ func getLowPoints(inHeightMap heightMap: HeightMap) -> [Point] {
     for column in 0..<heightMap.columns {
         for row in 0..<heightMap.rows {
             let height = heightMap[column, row]
-            let up = heightMap.indexIsValid(column: column, row: row - 1) ? heightMap[column, row - 1] : 9
-            let down = heightMap.indexIsValid(column: column, row: row + 1) ? heightMap[column, row + 1] : 9
-            let left = heightMap.indexIsValid(column: column - 1, row: row) ? heightMap[column - 1, row] : 9
-            let right = heightMap.indexIsValid(column: column + 1, row: row) ? heightMap[column + 1, row] : 9
-            let isLowPoint = height < up && height < down && height < left && height < right
+            let points = getPoints(aroundPoint: Point(column, row))
+            
+            let isLowPoint = points.allSatisfy {
+                let pointHeight = heightMap.indexIsValid(column: $0.x, row: $0.y) ? heightMap[$0.x, $0.y] : 9
+                
+                return height < pointHeight
+            }
             
             if (isLowPoint) {
                 lowPoints.append(Point(column, row))
