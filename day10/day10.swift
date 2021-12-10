@@ -1,4 +1,3 @@
-import Foundation
 typealias ChunkType = (opener: Character, closer: Character)
 
 let CHUNK_TYPES: [ChunkType] = [
