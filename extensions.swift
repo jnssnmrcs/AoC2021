@@ -1,5 +1,15 @@
 import Foundation
 
+extension Array where Element: Hashable {
+    func duplicates() -> Array {
+        let groups = Dictionary(grouping: self, by: {$0})
+        let duplicateGroups = groups.filter {$1.count > 1}
+        let duplicates = Array(duplicateGroups.keys)
+        
+        return duplicates
+    }
+}
+
 extension Dictionary where Value: Equatable {
     func firstKey(of val: Value) -> Key? {
         return self.filter { $1 == val }.map { $0.key }.first
