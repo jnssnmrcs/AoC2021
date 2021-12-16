@@ -205,7 +205,7 @@ fileprivate func getVersionSum(ofPacket packet: Packet) -> Int {
     } else {
         let operatorPacket = packet as! OperatorPacket
         
-        return operatorPacket.version + operatorPacket.packets.reduce(0) { $0 + getVersionSum(ofPacket: $1) }
+        return operatorPacket.packets.reduce(operatorPacket.version) { $0 + getVersionSum(ofPacket: $1) }
     }
 }
 
