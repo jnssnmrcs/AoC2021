@@ -70,7 +70,7 @@ struct DeterministicGame {
     }
 }
 
-typealias DiracGame = (position1: Int, position2: Int, score1: Int, score2: Int, player1: Bool, games: Int)
+typealias DiracGame = (position1: Int, position2: Int, score1: Int, score2: Int, currentPlayer: Int, games: Int)
 
 func getNewPosition(position: Int, steps: Int) -> Int {
     var newPosition = position + steps
@@ -99,7 +99,7 @@ func day21part2(_ input: String) -> Int {
     let startingPositions = input.components(separatedBy: "\n")
     let start1 = Int(String(startingPositions.first!.last!))!
     let start2 = Int(String(startingPositions.last!.last!))!
-    var games: [DiracGame] = [(start1, start2, 0, 0, true, 1)]
+    var games: [DiracGame] = [(start1, start2, 0, 0, 1, 1)]
     var player1Wins = 0
     var player2Wins = 0
     
@@ -111,7 +111,7 @@ func day21part2(_ input: String) -> Int {
         for (index, (steps, numberOfGames)) in moves.enumerated() {
             var game = newGames[index]
             
-            if (game.player1) {
+            if (game.currentPlayer == 1) {
                 let newPosition = getNewPosition(position: game.position1, steps: steps)
                 
                 game.score1 += newPosition
@@ -123,7 +123,7 @@ func day21part2(_ input: String) -> Int {
                 game.position2 = newPosition
             }
             
-            game.player1 = !game.player1
+            game.currentPlayer = game.currentPlayer == 1 ? 2 : 1
             game.games *= numberOfGames
             
             if (game.score1 >= 21) {
